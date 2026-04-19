@@ -1,8 +1,28 @@
-<h1>備品予約</h1>
+<div class="container mt-4" style="max-width: 600px;">
+  <div class="card shadow-sm border-0">
+    <div class="card-header bg-white border-bottom-0 pt-4">
+      <h1 class="h3 mb-0 text-secondary fw-bold">備品予約</h1>
+    </div>
+    <div class="card-body p-4">
+      <div class="mb-4">
+        <label class="form-label text-muted small text-uppercase mb-1">デバイスの種類</label>
+        <div class="fs-5 fw-bold text-dark">
+          <%= @device.device_type %>
+        </div>
+      </div>
+      
+      <div class="mb-4">
+        <label class="form-label text-muted small text-uppercase mb-1">シリアル番号</label>
+        <div class="fs-5 text-dark font-monospace">
+          <%= @device.serial %>
+        </div>
+      </div>
 
-<div>
-  <%= @device.device_type %>
-  <%= @device.serial %>
+      <hr class="my-4 text-light">
+
+      <div class="d-grid">
+        <%= link_to "機器一覧へ戻る", devices_path, class: "btn btn-outline-secondary" %>
+      </div>
+    </div>
+  </div>
 </div>
-
-<%= link_to "機器一覧へ戻る", devices_path %>

@@ -1,22 +1,35 @@
-<h1>機器一覧</h1>
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="h3 mb-0 text-secondary">機器一覧</h1>
+    <%= link_to "機器登録", new_device_path, class: "btn btn-primary" %>
+  </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>種類</th>
-      <th>シリアルNo</th>
-      <th>ステータス</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @devices.each do |device| %>
-      <tr>
-        <td><%= link_to device.device_type, device_path(device) %></td>
-        <td><%= device.serial %></td>
-      </tr>
-    <% end%>
-  </tbody>
-</table>
-
-<%= link_to "機器登録", new_device_path %>
+  <div class="card shadow-sm">
+    <div class="table-responsive">
+      <table class="table table-hover align-middle mb-0">
+        <thead class="table-light">
+          <tr>
+            <th class="ps-4">種類</th>
+            <th>シリアルNo</th>
+            <th class="pe-4">ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @devices.each do |device| %>
+            <tr>
+              <td class="ps-4">
+                <%= device.device_type %>
+              </td>
+              <td>
+                <%= link_to device.serial, device_path(device), class: "text-decoration-none fw-bold" %>
+              </td>
+              <td class="pe-4">
+                <span class="badge rounded-pill bg-success-subtle text-success">利用可能</span>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

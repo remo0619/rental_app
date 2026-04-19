@@ -1,10 +1,13 @@
-<header>
-  <div>
-    <h1>Rental App</h1>
-
-    <% if user_signed_in? %>
-      <%= link_to current_user.name, user_path(current_user) %>
-    <% end %>
-    <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete } %>
-  </dev>
+<header class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold" href="/">Rental App</a>
+    
+    <div class="d-flex align-items-center">
+      <% if user_signed_in? %>
+        <%= link_to current_user.name, user_path(current_user), class: "nav-link me-3 text-dark" %>
+      <% end %>
+      
+      <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete }, class: "btn btn-outline-danger btn-sm" %>
+    </div>
+  </div>
 </header>

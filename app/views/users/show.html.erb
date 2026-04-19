@@ -1,21 +1,36 @@
-<h1>マイページ</h1>
+<div class="container mt-4" style="max-width: 600px;">
+  <div class="card shadow-sm border-0">
+    <div class="card-header bg-white border-bottom-0 pt-4">
+      <h1 class="h3 mb-0 text-secondary fw-bold">マイページ</h1>
+    </div>
+    <div class="card-body p-4">
+      <div class="mb-4">
+        <label class="form-label text-muted small text-uppercase mb-1">ユーザー名</label>
+        <div class="fs-5 fw-bold text-dark">
+          <%= @user.name %>
+        </div>
+      </div>
+      
+      <div class="mb-4">
+        <label class="form-label text-muted small text-uppercase mb-1">メールアドレス</label>
+        <div class="fs-5 text-dark">
+          <%= @user.email %>
+        </div>
+      </div>
 
-<table>
-  <tbody>
-    <tr>
-      <h5>ユーザー名</h5>
-      <%= @user.name %>
-    </tr>
-    <tr>
-      <h5>メールアドレス</h5>
-      <%= @user.email %>
-    </tr>
-    <tr>
-      <h5>パスワード</h5>
-      <p>********</p>
-    </tr>
-  </tbody>
-</table>
+      <div class="mb-4">
+        <label class="form-label text-muted small text-uppercase mb-1">パスワード</label>
+        <div class="fs-5 text-dark">
+          <p class="mb-0">********</p>
+        </div>
+      </div>
 
-<%= link_to "プロフィール編集", edit_user_path(current_user) %>
-<%= link_to "パスワード変更", edit_user_registration_path(current_user) %>
+      <hr class="my-4 text-light">
+
+      <div class="d-grid gap-2">
+        <%= link_to "プロフィール編集", edit_user_path(current_user), class: "btn btn-primary" %>
+        <%= link_to "パスワード変更", edit_user_registration_path(current_user), class: "btn btn-outline-secondary" %>
+      </div>
+    </div>
+  </div>
+</div>

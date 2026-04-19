@@ -1,7 +1,7 @@
 <div class="container mt-4" style="max-width: 600px;">
   <div class="card shadow-sm border-0">
     <div class="card-header bg-white border-bottom-0 pt-4">
-      <h1 class="h3 mb-0 text-secondary fw-bold">備品予約</h1>
+      <h1 class="h3 mb-0 text-secondary fw-bold">機器詳細</h1>
     </div>
     <div class="card-body p-4">
       <div class="mb-4">
@@ -20,7 +20,8 @@
 
       <hr class="my-4 text-light">
 
-      <div class="d-grid">
+      <div class="d-grid gap-2">
+        <%= link_to "機器情報編集", edit_device_path, class: "btn btn-primary" %>
         <%= link_to "機器一覧へ戻る", devices_path, class: "btn btn-outline-secondary" %>
       </div>
     </div>

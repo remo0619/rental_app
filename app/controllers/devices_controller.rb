@@ -6,7 +6,6 @@ class DevicesController < ApplicationController
   end
 
   def show
-    p @devices
   end
 
   def new
@@ -26,6 +25,11 @@ class DevicesController < ApplicationController
   end
 
   def update
+    if @device.update(set_params)
+      redirect_to device_path(@device)
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy

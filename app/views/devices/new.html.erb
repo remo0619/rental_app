@@ -1,2 +1,27 @@
-<h1>Devices#new</h1>
-<p>Find me in app/views/devices/new.html.erb</p>
+<h1>デバイス登録</h1>
+
+<%= form_with model: @device do |f| %>
+  <table>
+    <tbody>
+      <tr>
+        <%= f.label :device_type, "デバイスの種類" %><br>
+        <%= f.text_field :device_type %><br>
+        <% if @device.errors[:device_type].any? %>
+          <%= @device.errors.full_messages_for(:device_type).first %>
+        <% end %>
+      </tr>
+      <tr>
+        <%= f.label :serial, "シリアル番号" %><br>
+        <%= f.text_field :serial %><br>
+        <% if @device.errors[:serial].any? %>
+          <%= @device.errors.full_messages_for(:serial).first %>
+        <% end %>
+      </tr>
+    </tbody>
+  </table>
+
+  <div>
+    <%= f.submit "登録" %>
+    <%= link_to "マイページに戻る", user_path(current_user) %>
+  </div>
+<% end %>

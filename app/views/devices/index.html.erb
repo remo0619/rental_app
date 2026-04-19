@@ -10,6 +10,13 @@
   </thead>
 
   <tbody>
+    <% @devices.each do |device| %>
+      <tr>
+        <td><%= link_to device.device_type, device_path(device) %></td>
+        <td><%= device.serial %></td>
+      </tr>
+    <% end%>
   </tbody>
-
 </table>
+
+<%= link_to "機器登録", new_device_path %>

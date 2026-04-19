@@ -1,2 +1,8 @@
-<h1>Devices#show</h1>
-<p>Find me in app/views/devices/show.html.erb</p>
+<h1>備品予約</h1>
+
+<div>
+  <%= @device.device_type %>
+  <%= @device.serial %>
+</div>
+
+<%= link_to "機器一覧へ戻る", devices_path %>

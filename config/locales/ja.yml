@@ -8,6 +8,11 @@ ja:
       device:
         serial: "シリアル番号"
         device_type: "デバイスの種類"
+        status:
+          available: "利用可能"
+          borrowed: "貸出中"
+          unavailable: "利用不可"
+
       request:
         start_date: "使用開始日"
         end_date: "使用終了日"

@@ -24,7 +24,19 @@
                 <%= link_to device.serial, device_path(device), class: "text-decoration-none fw-bold" %>
               </td>
               <td class="pe-4">
-                <span class="badge rounded-pill bg-success-subtle text-success">利用可能</span>
+                <% if device.available? %>
+                  <span class="badge rounded-pill bg-primary-subtle text-primary">
+                    <%= device.status_i18n %>
+                  </span>
+                <% elsif device.borrowed? %>
+                  <span class="badge rounded-pill bg-success-subtle text-success">
+                    <%= device.status_i18n %>
+                  </span>
+                <% else %>
+                  <span class="badge rounded-pill bg-danger-subtle text-danger">
+                    <%= device.status_i18n %>
+                  </span>
+                <% end %>
               </td>
             </tr>
           <% end %>

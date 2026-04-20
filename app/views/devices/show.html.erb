@@ -22,6 +22,7 @@
 
       <div class="d-grid gap-2">
         <%= link_to "機器情報編集", edit_device_path, class: "btn btn-primary" %>
+        <%= link_to "この機器を借りる", new_request_path(device_id: @device.id), class: "btn btn-primary" %>
         <%= link_to "機器一覧へ戻る", devices_path, class: "btn btn-outline-secondary" %>
       </div>
     </div>

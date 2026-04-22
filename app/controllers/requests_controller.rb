@@ -1,10 +1,19 @@
 class RequestsController < ApplicationController
-  before_action :set_request, only: [:show, :approve, :reject, :return, :edit, :update, :destroy]
+  before_action :set_request, only: [:show, :show_pending, :show_history, :approve, :reject, :return, :edit, :update, :destroy]
 
   def index
   end
 
+  # 申請一覧表示
   def show
+  end
+
+  # 未承認申請一覧表示
+  def show_pending
+  end
+
+  # 承認履歴表示
+  def show_history
   end
 
   def new

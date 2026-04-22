@@ -19,6 +19,9 @@ Rails.application.routes.draw do
       patch :approve
       patch :reject
       patch :return
+
+      get :show_pending
+      get :show_history
     end
   end
   

@@ -1,0 +1,34 @@
+<div class="mb-3">
+  <%= f.label :user_id, "申請者", class: "form-label text-muted small text-uppercase mb-1"%>
+  <div class="fs-5 fw-bold text-dark">
+    <%= @request.user.name %>
+  </div>
+</div>
+
+<div class="mb-4">
+  <label class="form-label text-muted small text-uppercase mb-1">デバイスの種類</label>
+  <div class="fs-5 fw-bold text-dark">
+    <%= @request.device.device_type %>
+  </div>
+</div>
+
+<div class="mb-4">
+  <label class="form-label text-muted small text-uppercase mb-1">シリアル番号</label>
+  <div class="fs-5 text-dark font-monospace">
+    <%= @request.device.serial %>
+  </div>
+</div>
+
+<div class="mb-4">
+  <%= f.label :start_date, "利用開始日", class: "form-label text-muted small text-uppercase mb-1" %>
+  <div class="fs-5 fw-bold text-dark">
+    <%= @request.start_date %>
+  </div>
+</div>
+
+<div class="mb-4">
+  <%= f.label :end_date, "利用終了日", class: "form-label text-muted small text-uppercase mb-1" %>
+  <div class="fs-5 fw-bold text-dark">
+    <%= @request.end_date %>
+  </div>
+</div>

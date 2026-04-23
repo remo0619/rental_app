@@ -2,19 +2,10 @@
   <div class="card shadow-sm">
     <div class="card-header bg-white py-3 d-flex justify-content-between">
       <h1 class="h4 mb-0 text-secondary">機器利用申請</h1>
-      <% if @request.approved? %>
-        <span class="badge rounded-pill bg-success-subtle text-success border border-success-subtle px-3 py-2">
-        <%= @request.status_i18n %>
+        <% color = @request.pending? ? 'primary' : (@request.approved? ? 'success' : (req.rejected? ? 'danger' : 'secondary')) %>
+        <span class="badge rounded-pill bg-<%= color %>-subtle text-<%= color %> border border-<%= color %>-subtle px-3 py-2">
+          <%= @request.status_i18n %>
         </span>
-      <% elsif @request.rejected? %>
-        <span class="badge rounded-pill bg-danger-subtle text-danger border border-danger-subtle px-3 py-2">
-        <%= @request.status_i18n %>
-        </span>
-      <% else %>
-        <span class="badge rounded-pill bg-secondary-subtle text-secondary border border-secondary-subtle px-3 py-2">
-        <%= @request.status_i18n %>
-        </span>
-      <% end %>
     </div>
     <div class="card-body p-4">
       <%= form_with model: @request do |f| %>
@@ -34,7 +25,7 @@
         
         <div class="mb-4">
           <label class="form-label text-muted small text-uppercase mb-1">シリアル番号</label>
-          <div class="fs-5 text-dark font-monospace">
+          <div class="fs-5 fw-bold text-dark">
             <%= @request.device.serial %>
           </div>
         </div>
@@ -54,10 +45,12 @@
         </div>
 
         <div class="mb-3">
-          <%= f.label :comment, "コメント", class: "form-label text-muted small text-uppercase mb-1"  %>
-          <div class="fs-5 fw-bold text-dark">
-            <%= @request.comment %>
-          </div>
+          <% if @request.comment.present? %>
+            <%= f.label :comment, "コメント", class: "form-label text-muted small text-uppercase mb-1"  %>
+            <div class="fs-5 fw-bold text-dark">
+              <%= @request.comment %>
+            </div>
+          <% end %>
         </div>
         <div class="d-grid gap-2 mt-5">
           <%= link_to "マイページに戻る", user_path(current_user), class: "btn btn-link text-decoration-none text-muted" %>

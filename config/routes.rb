@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   # ログインしていない時のroot(新規登録)
   unauthenticated do
     devise_scope :user do
-      root "devise/registrations#new", as: :unauthenticated_root
+      root "devise/sessions#new", as: :unauthenticated_root
     end
   end
 

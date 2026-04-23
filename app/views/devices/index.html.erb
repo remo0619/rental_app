@@ -1,4 +1,4 @@
-<div class="container mt-4">
+<div class="container mt-4" style="max-width: 1000px;">
   <div class="d-flex justify-content-between align-items-center mb-4">
     <h1 class="h3 mb-0 text-secondary">機器一覧</h1>
     <%= link_to "機器登録", new_device_path, class: "btn btn-primary" %>
@@ -16,27 +16,18 @@
         </thead>
         <tbody>
           <% @devices.each do |device| %>
-            <tr>
+            <tr class="position-relative">
               <td class="ps-4">
-                <%= device.device_type %>
+                <%= link_to device.device_type, device_path(device), class: "text-decoration-none text-dark fw-medium stretched-link" %>
               </td>
               <td>
-                <%= link_to device.serial, device_path(device), class: "text-decoration-none fw-bold" %>
+                <%= device.serial %>
               </td>
               <td class="pe-4">
-                <% if device.available? %>
-                  <span class="badge rounded-pill bg-primary-subtle text-primary">
-                    <%= device.status_i18n %>
-                  </span>
-                <% elsif device.borrowed? %>
-                  <span class="badge rounded-pill bg-success-subtle text-success">
-                    <%= device.status_i18n %>
-                  </span>
-                <% else %>
-                  <span class="badge rounded-pill bg-danger-subtle text-danger">
-                    <%= device.status_i18n %>
-                  </span>
-                <% end %>
+                <% color = device.available? ? 'primary' : (device.borrowed? ? 'success' : 'danger') %>
+                <span class="badge rounded-pill bg-<%= color %>-subtle text-<%= color %> border border-<%= color %>-subtle px-3 py-2">
+                  <%= device.status_i18n %>
+                </span>
               </td>
             </tr>
           <% end %>

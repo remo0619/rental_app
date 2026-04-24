@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user
+  before_action :check_guest, only: :update
 
   def show
     @devices = @user.devices
@@ -41,5 +42,11 @@ class UsersController < ApplicationController
 
   def set_params
     params.require(:user).permit(:name, :email)
+  end
+
+  def check_guest
+    if @user.email == 'guest@example.com' || @user.email == 'admin_guest@example.com'
+      redirect_to :authenticated_root
+    end
   end
 end

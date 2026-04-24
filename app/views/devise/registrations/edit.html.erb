@@ -1,62 +1,62 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="container mt-5 mb-5" style="max-width: 500px;">
+  <div class="card shadow-sm border-0">
+    <div class="card-header bg-white border-bottom-0 pt-4 text-center">
+      <h1 class="h3 mb-0 text-secondary fw-bold">パスワード更新</h1>
+    </div>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+    <div class="card-body p-4">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
 
-  <div class="field">
-    <p><%= f.label :password %> <i>(leave blank if you don't want to change it)</i></p>
-    <p><%= f.password_field :password, autocomplete: "new-password" %></p>
-    <% if @minimum_password_length %>
-      <p><em><%= @minimum_password_length %> characters minimum</em></p>
-    <% end %>
-    <% if resource.errors.any? %>
-      <div id="error_explanation" data-turbo-temporary>
-        <ul>
-          <% resource.errors.full_messages_for(:password).each do |message| %>
-            <li><%= message %></li>
+        <div class="mb-3">
+          <div class="d-flex justify-content-between align-items-end mb-1">
+            <%= f.label :password, "新しいパスワード", class: "form-label text-muted small text-uppercase mb-0" %>
+          </div>
+          <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+          <% if @minimum_password_length %>
+            <div class="text-muted small mt-1"><%= @minimum_password_length %>文字以上</div>
           <% end %>
-        </ul>
-      </div>
-    <% end %>
-  </div>
-
-  <div class="field">
-    <p><%= f.label :password_confirmation %></p>
-    <p><%= f.password_field :password_confirmation, autocomplete: "new-password" %></p>
-    <% if resource.errors.any? %>
-      <div id="error_explanation" data-turbo-temporary>
-        <ul>
-          <% resource.errors.full_messages_for(:password_confirmation).each do |message| %>
-            <li><%= message %></li>
+          <% if resource.errors[:password].any? %>
+            <div class="text-danger small mt-1"><%= resource.errors.full_messages_for(:password).first %></div>
           <% end %>
-        </ul>
-      </div>
-    <% end %>
-  </div>
+        </div>
 
-  <div class="field">
-    <p><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i></p>
-    <p><%= f.password_field :current_password, autocomplete: "current-password" %></p>
-    <% if resource.errors.any? %>
-      <div id="error_explanation" data-turbo-temporary>
-        <ul>
-          <% resource.errors.full_messages_for(:current_password).each do |message| %>
-            <li><%= message %></li>
+        <div class="mb-3">
+          <%= f.label :password_confirmation, "新しいパスワード（確認用）", class: "form-label text-muted small text-uppercase mb-1" %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+          <% if resource.errors[:password_confirmation].any? %>
+            <div class="text-danger small mt-1"><%= resource.errors.full_messages_for(:password_confirmation).first %></div>
           <% end %>
-        </ul>
+        </div>
+
+        <hr class="my-4 text-light">
+
+        <div class="mb-4">
+          <div class="d-flex justify-content-between align-items-end mb-1">
+            <%= f.label :current_password, "現在のパスワード", class: "form-label text-muted small text-uppercase mb-0" %>
+          </div>
+          <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control" %>
+          <% if resource.errors[:current_password].any? %>
+            <div class="text-danger small mt-1"><%= resource.errors.full_messages_for(:current_password).first %></div>
+          <% end %>
+        </div>
+
+        <div class="d-grid gap-2 mb-3">
+          <%= f.submit "パスワードを更新する", class: "btn btn-primary btn-lg" %>
+        </div>
+      <% end %>
+
+      <div class="text-center mt-2">
+        <%= link_to "マイページに戻る", user_path(current_user), class: "text-decoration-none text-muted small" %>
       </div>
-    <% end %>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Update" %>
+  <%#
+  <div class="mt-5 pt-4 border-top text-center">
+    <%= button_to "アカウントを削除する", registration_path(resource_name), 
+                  data: { confirm: "本当に削除しますか？", turbo_confirm: "本当に削除しますか？" }, 
+                  method: :delete, 
+                  class: "btn btn-outline-danger btn-sm" %>
   </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
-
-<%= link_to "Back", :back %>
+  %>
+</div>

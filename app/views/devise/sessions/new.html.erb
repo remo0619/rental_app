@@ -42,6 +42,12 @@
         </div>
       <% end %>
 
+      <% # ゲストログインボタン %>
+      <div class="d-grid gap-2 mb-3">
+        <%= button_to "一般ゲストログイン", users_guest_sign_in_path, method: :post, class: "btn btn-info btn-sm w-100" %>
+        <%= button_to "管理者ゲストログイン", users_admin_guest_sign_in_path, method: :post, class: "btn btn-danger btn-sm w-100" %>
+      </div>
+
       <div class="text-center small">
         <%= render "devise/shared/links" %>
       </div>

@@ -6,6 +6,7 @@ class DevicesController < ApplicationController
   end
 
   def show
+    @my_request = @device.requests.find_by(user_id: current_user.id, status: :approved )
   end
 
   def new

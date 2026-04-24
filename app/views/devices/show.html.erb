@@ -29,7 +29,10 @@
           <%= link_to "機器情報編集", edit_device_path, class: "btn btn-primary" %>
         <% end %>
         <% if @device.available? %>
-          <%= link_to "この機器を借りる", new_request_path(device_id: @device.id), class: "btn btn-primary" %>
+          <%= link_to "この機器を利用する", new_request_path(device_id: @device.id), class: "btn btn-primary" %>
+        <% elsif @device.borrowed? && @my_request.present? %>
+          <%= button_to "この機器を返却する", return_request_path(@my_request), method: :patch, class: "btn btn-info w-100" %>
+        <% else %>
         <% end %>
         <%= link_to "戻る", :back, class: "btn btn-outline-secondary" %>
       </div>

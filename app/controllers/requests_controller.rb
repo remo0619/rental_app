@@ -36,7 +36,7 @@ class RequestsController < ApplicationController
   def approve
     if @request.update(status: :approved, comment: params[:request][:comment])
       @request.device.update(status: :borrowed)
-      redirect_to user_path(current_user), notice: "依頼を承認しました"
+      redirect_to user_path(current_user)
     else
       render :show, status: :unprocessable_entity
     end
@@ -44,13 +44,19 @@ class RequestsController < ApplicationController
 
   def reject
     if @request.update(status: :rejected, comment: params[:request][:comment])
-      redirect_to user_path(current_user), notice: "依頼を承認しました"
+      redirect_to user_path(current_user)
     else
       render :show, status: :unprocessable_entity
     end
   end
 
   def return
+    if @request.update(status: :returned)
+      @request.device.update(status: :available)
+      redirect_to user_path(current_user)
+    else
+      render :show, status: :unprocessable_entity
+    end
   end
 
   def edit

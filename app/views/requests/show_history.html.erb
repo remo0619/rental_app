@@ -1,0 +1,26 @@
+<div class="container mt-4" style="max-width: 600px;">
+  <div class="card shadow-sm">
+    <div class="card-header bg-white py-3 d-flex justify-content-between">
+      <h1 class="h4 mb-0 text-secondary">機器利用申請</h1>
+      <% color = @request.approved? ? 'success' : (@request.rejected? ? 'danger' : 'secondary') %>
+      <span class="badge rounded-pill bg-<%= color %>-subtle text-<%= color %> border border-<%= color %>-subtle px-3 py-2">
+        <%= @request.status_i18n %>
+      </span>
+    </div>
+    <div class="card-body p-4">
+      <%= form_with model: @request do |f| %>
+        <%= render "shared/show_request", f: f %>
+
+        <div class="mb-3">
+          <%= f.label :comment, "コメント", class: "form-label text-muted small text-uppercase mb-1" %>
+          <div class="fs-5 fw-bold text-dark">
+            <%= @request.comment %>
+          </div>
+        </div>
+        <div class="d-grid gap-2 mt-5">
+          <%= link_to "マイページに戻る", user_path(current_user), class: "btn btn-link text-decoration-none text-muted" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

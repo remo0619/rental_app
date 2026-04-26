@@ -1,0 +1,35 @@
+<div class="container mt-4" style="max-width: 600px;">
+  <div class="card shadow-sm">
+    <div class="card-header bg-white py-3">
+      <h1 class="h4 mb-0 text-secondary">デバイス登録</h1>
+    </div>
+    <div class="card-body p-4">
+      <%= form_with model: @device do |f| %>
+        <div class="mb-4">
+          <%= f.label :device_type, "デバイスの種類", class: "form-label fw-bold" %>
+          <%= f.text_field :device_type, class: "form-control #{'is-invalid' if @device.errors[:device_type].any?}" %>
+          <% if @device.errors[:device_type].any? %>
+            <div class="text-danger small mt-1">
+              <%= @device.errors.full_messages_for(:device_type).first %>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="mb-4">
+          <%= f.label :serial, "シリアル番号", class: "form-label fw-bold" %>
+          <%= f.text_field :serial, class: "form-control #{'is-invalid' if @device.errors[:serial].any?}" %>
+          <% if @device.errors[:serial].any? %>
+            <div class="text-danger small mt-1">
+              <%= @device.errors.full_messages_for(:serial).first %>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="d-grid gap-2 mt-5">
+          <%= f.submit "登録", class: "btn btn-primary btn-lg" %>
+          <%= link_to "マイページに戻る", user_path(current_user), class: "btn btn-link text-decoration-none text-muted" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

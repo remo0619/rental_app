@@ -1,0 +1,45 @@
+<%= render "shared/flash_message" %>
+
+<div class="container mt-4" style="max-width: 1000px;">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="h3 mb-0 text-secondary">機器一覧</h1>
+    <% if current_user.admin? %>
+      <%= link_to "機器登録", new_device_path, class: "btn btn-primary" %>
+    <% end %>
+  </div>
+
+  <div class="card shadow-sm">
+    <div class="table-responsive">
+      <table class="table table-hover align-middle mb-0">
+        <thead class="table-light">
+          <tr>
+            <th class="ps-4">種類</th>
+            <th>シリアルNo</th>
+            <th class="pe-4">ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @devices.each do |device| %>
+            <tr class="position-relative">
+              <td class="ps-4">
+                <%= link_to device.device_type, device_path(device), class: "text-decoration-none text-dark fw-medium stretched-link" %>
+              </td>
+              <td>
+                <%= device.serial %>
+              </td>
+              <td class="pe-4">
+                <% color = device.available? ? 'primary' : (device.borrowed? ? 'success' : 'danger') %>
+                <span class="badge rounded-pill bg-<%= color %>-subtle text-<%= color %> border border-<%= color %>-subtle px-3 py-2">
+                  <%= device.status_i18n %>
+                </span>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="d-flex justify-content-end mt-2">
+    <%= paginate @devices %>
+  </div>
+</div>

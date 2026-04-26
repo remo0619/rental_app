@@ -1,0 +1,45 @@
+<div class="container mt-4" style="max-width: 600px;">
+  <div class="card shadow-sm">
+    <div class="card-header bg-white py-3 d-flex justify-content-between">
+      <h1 class="h4 mb-0 text-secondary">機器利用申請</h1>
+      <span class="badge rounded-pill bg-primary-subtle text-primary border border-primary-subtle px-3 py-2">
+      <%= @request.status_i18n %>
+      </span>
+    </div>
+    <div class="card-body p-4">
+      <%= form_with model: @request do |f| %>
+        <%= render "shared/show_request", f: f %>
+
+        <div class="mb-3">
+          <%= f.label :comment, "コメント", class: "form-label text-muted small text-uppercase mb-1"  %>
+          <%= f.text_area :comment, class: "form-control", rows: 3, placeholder: "理由があれば入力してください" %>
+        </div>
+        <div class="d-grid gap-2 mt-5">
+          <%= button_tag "承認する", 
+              type: "button", 
+              class: "btn btn-primary btn-lg",
+              data: { 
+                bs_toggle: "modal", 
+                bs_target: "#confirmModal",
+                bs_url: approve_request_path(@request),
+                bs_title: "承認確認",
+                bs_message: "この申請を【承認】します。よろしいですか？"
+              } %>
+          <%= button_tag "否認する", 
+              type: "button", 
+              class: "btn btn-danger btn-lg",
+              data: { 
+                bs_toggle: "modal", 
+                bs_target: "#confirmModal",
+                bs_url: reject_request_path(@request),
+                bs_title: "否認確認",
+                bs_message: "この申請を【否認】します。よろしいですか？"
+              } %>
+          <%= link_to "マイページに戻る", user_path(current_user), class: "btn btn-link text-decoration-none text-muted" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<%= render "shared/confirm_modal" %>

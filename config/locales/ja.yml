@@ -1,0 +1,36 @@
+ja:
+  views:
+    pagination:
+      first: "&laquo; 最初"
+      last: "最後 &raquo;"
+      previous: "&lsaquo; 前"
+      next: "次 &rsaquo;"
+      truncate: "&hellip;"
+
+  activerecord:
+    attributes:
+      user:
+        name: "ユーザー名"
+        email: "メールアドレス"
+        password: "パスワード"
+        authority:
+          admin: "管理者"
+          user: "ユーザー"
+      device:
+        serial: "シリアル番号"
+        device_type: "デバイスの種類"
+        status:
+          available: "利用可能"
+          borrowed: "貸出中"
+          unavailable: "利用不可"
+      request:
+        start_date: "使用開始日"
+        end_date: "使用終了日"
+        approver_id: "管理者"
+        status:
+          pending: "承認待ち"
+          approved: "承認済み"
+          rejected: "否認"
+          returned: "返却済み"
+
+

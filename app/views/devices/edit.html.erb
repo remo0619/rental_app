@@ -1,0 +1,36 @@
+<div class="container mt-4" style="max-width: 600px;">
+  <div class="card shadow-sm border-0">
+    <div class="card-header bg-white border-bottom-0 pt-4">
+      <h1 class="h3 mb-0 text-secondary fw-bold">機器情報編集</h1>
+    </div>
+    <div class="card-body p-4">
+      <%= form_with model: @device do |f| %>
+        <div class="mb-4">
+          <%= f.label :device_type, "デバイスの種類", class: "form-label fw-bold" %>
+          <%= f.text_field :device_type, class: "form-control #{'is-invalid' if @device.errors[:device_type].any?}" %>
+          <% if @device.errors[:device_type].any? %>
+            <div class="text-danger small mt-1">
+              <%= @device.errors.full_messages_for(:device_type).first %>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="mb-4">
+          <%= f.label :serial, "シリアルNo", class: "form-label fw-bold" %>
+          <%= f.text_field :serial, class: "form-control #{'is-invalid' if @device.errors[:serial].any?}" %>
+          <% if @device.errors[:serial].any? %>
+            <div class="text-danger small mt-1">
+              <%= @device.errors.full_messages_for(:serial).first %>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="d-grid gap-2 mt-5">
+          <%= f.submit "更新", class: "btn btn-primary btn-lg" %>
+          <%= link_to "この機器を削除する", device_path(@device), data: { turbo_method: :delete, turbo_confirm: "本当に削除してもよろしいですか？" }, class: "btn btn-danger btn-lg" %>
+          <%= link_to "機器詳細に戻る", device_path(@device), class: "btn btn-link text-decoration-none text-muted" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

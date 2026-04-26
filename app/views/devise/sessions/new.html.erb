@@ -1,0 +1,56 @@
+<div class="container mt-5" style="max-width: 450px;">
+  <div class="card shadow-sm border-0">
+    <div class="card-header bg-white border-bottom-0 pt-4 text-center">
+      <h1 class="h3 mb-0 text-secondary fw-bold">ログイン</h1>
+    </div>
+
+    <div class="card-body p-4">
+      <% if flash[:alert] %>
+        <div class="text-danger small mt-1 mb-3">
+          <%= flash[:alert] %>
+        </div>
+      <% end %>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: false }) do |f| %>
+        
+        <% # メールアドレス %>
+        <div class="mb-3">
+          <%= f.label :email, class: "form-label text-muted small text-uppercase mb-1" %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+        </div>
+
+        <% # パスワード %>
+        <div class="mb-3">
+          <%= f.label :password, class: "form-label text-muted small text-uppercase mb-1" %>
+          <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
+        </div>
+
+        <% if devise_mapping.rememberable? %>
+          <div class="mb-4 form-check">
+            <%= f.check_box :remember_me, class: "form-check-input" %>
+            <%= f.label :remember_me, class: "form-check-label text-muted small" %>
+            <% if @user.errors[:remember_me].any? %>
+              <div class="text-danger small mt-1">
+                <%= @user.errors.full_messages_for(:remember_me).first %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+
+        <% # ログインボタン %>
+        <div class="d-grid gap-2 mb-3">
+          <%= f.submit "ログイン", class: "btn btn-primary btn-lg" %>
+        </div>
+      <% end %>
+
+      <% # ゲストログインボタン %>
+      <div class="d-grid gap-2 mb-3">
+        <%= button_to "一般ゲストログイン", users_guest_sign_in_path, method: :post, class: "btn btn-info btn-sm w-100" %>
+        <%= button_to "管理者ゲストログイン", users_admin_guest_sign_in_path, method: :post, class: "btn btn-danger btn-sm w-100" %>
+      </div>
+
+      <div class="text-center small">
+        <%= render "devise/shared/links" %>
+      </div>
+    </div>
+  </div>
+</div>

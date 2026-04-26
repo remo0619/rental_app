@@ -1,8 +1,9 @@
-# AssetFlow 企業向け備品貸し出し管理アプリ
+# AssetFlow 企業向け資産管理アプリ
 
 ## アプリの概要
 社内備品の管理・貸出フローをデジタル化し、効率的な資産管理を支援するシステムです。  
 PCや外付けHDDなどの備品在庫を可視化し、従業員による利用申請から管理者による承認までをワンストップで完結させます。
+
 ## 開発背景
 現職の備品貸出フローにおいて、在庫確認や申請をチャットで行うことによる情報の不透明さを解消したいと考え、本アプリを開発しました。  
 機器のステータスを可視化し、申請・承認フローを一つのシステムに統合することで、誰でも「今何が借りられるか」を即座に判断し、スムーズに手続きを進められるシステムを目標に開発しました。
@@ -55,7 +56,7 @@ erDiagram
         integer user_id FK
         string serial
         string device_type
-        integer status "enum: 0:available, 1:unavailable"
+        integer status "enum: 0:available, 1:borrowed, 2:unavailable"
     }
 
     REQUEST{

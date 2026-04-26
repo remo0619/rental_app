@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :devices
   has_many :requests
 
-  enum authority: { user: 0, admin: 1 }
+  enum :authority, { user: 0, admin: 1 }
 
   validates :name, length: { maximum: 20 }, presence: true
   validates :email, presence: true

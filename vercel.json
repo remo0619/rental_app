@@ -1,0 +1,17 @@
+{
+  "functions": {
+    "config/routes.rb": {
+      "runtime": "vercel-ruby@3.3.3"
+    }
+  },
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "config/routes.rb"
+    }
+  ],
+  "env": {
+    "RAILS_ENV": "production",
+    "RAILS_SERVE_STATIC_FILES": "true"
+  }
+}
